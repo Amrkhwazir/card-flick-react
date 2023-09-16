@@ -3,28 +3,60 @@ import {useState} from 'react';
 
 function App() {
 
-const [data, setData] = useState(["a","b","c","d","e","f"])
-const cardElm = document.querySelector(".cardBox")
-console.log(cardElm)
-  function flickCardHover(){
-    data.map((val)=>(
-      cardElm.innerHTML = val
-      ))
-  }
+  const initialData = [{
+    mainTxt: "what language is react based on?",
+    hvrTxt:  "JavaScript",
+  },{
+    mainTxt: "how to give components memory",
+    hvrTxt:  "use Hooks",
+  },{
+    mainTxt: "how to pass data from parents to child components",
+    hvrTxt:  "using props",
+  },{
+    mainTxt: "react js is a framework or library",
+    hvrTxt:  "library",
+  },{
+    mainTxt: "which purpose react Js used?",
+    hvrTxt:  "to build web, mobile, and desktop applications",
+  },{
+    mainTxt: "JSX stands for ",
+    hvrTxt:  "JavaScript XML",
+  },]
+
+const [data, setData] = useState(initialData)
+
+  function flickCardHover(index){
+
+const updatedData = [...data];
+updatedData[index].mainTxt = data[index].hvrTxt;
+setData(updatedData);
+
+}
+ 
+function flickCardLeave(){
+
+setData(initialData)
+
+}
+
+
+
+
   return (
     <div className="App">
-     <Cards func={flickCardHover} />
+     <Cards func={flickCardHover} value={data} cardLeave={flickCardLeave} />
     </div>
   );
 }
 
-function Cards({func,}){
+function Cards({func, value, cardLeave}){
+  
   return(
     <div className="cardBox">
      {
-      Array.from(["what language is react based on?","what are the building block of react apps?","how to give components memory","how to pass data from parents to child components","react js is a framework or library","JSX stands for "],(x)=>(
+      value.map((val, indx)=>(
 
-        <div className="cards" style={{width: "390px", height: "250px", marginTop: "10px", display: "flex", justifyContent: "center",alignItems: "center", cursor: "pointer", padding: "5px"}} onMouseOver={func}><h3>{x}</h3></div>
+        <div className='cards' style={{width: "390px", height: "250px", marginTop: "10px", display: "flex", justifyContent: "center",alignItems: "center", cursor: "pointer", padding: "5px"}} onMouseOver={() => func(indx)} onMouseLeave={cardLeave} key={indx}><h3>{val.mainTxt}</h3></div>
 
       ))
      }

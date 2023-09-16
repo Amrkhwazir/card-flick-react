@@ -13,15 +13,11 @@
 
 .cards{
   border: 2px dashed black;
-  transition: 3s all ease;
+  transition: 1s all ease;
 }
 
 .cards:hover{
 background-color: royalblue;
 color:  white;
 border: none;
-transform: rotateY(180deg);
-}
-.cards:hover h3{
-transform: rotateY(180deg);
 }
