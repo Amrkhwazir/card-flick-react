@@ -43,7 +43,7 @@ setData(initialData)
 
 
   return (
-    <div className="App">
+    <div className="App"style={{padding: "20px"}}>
      <Cards func={flickCardHover} value={data} cardLeave={flickCardLeave} />
     </div>
   );
@@ -56,7 +56,7 @@ function Cards({func, value, cardLeave}){
      {
       value.map((val, indx)=>(
 
-        <div className='cards' style={{width: "390px", height: "250px", marginTop: "10px", display: "flex", justifyContent: "center",alignItems: "center", cursor: "pointer", padding: "5px"}} onMouseOver={() => func(indx)} onMouseLeave={cardLeave} key={indx}><h3>{val.mainTxt}</h3></div>
+        <div className='cards' style={{width: "350px", height: "200px", marginTop: "20px", display: "flex", justifyContent: "center",alignItems: "center", cursor: "pointer", padding: "5px"}} onMouseOver={() => func(indx)} onMouseLeave={cardLeave} key={indx}><h3>{val.mainTxt}</h3></div>
 
       ))
      }
